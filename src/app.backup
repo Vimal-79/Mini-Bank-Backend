@@ -1,0 +1,71 @@
+
+
+import express from "express";
+import cors from "cors";
+import { connection } from "./connection.js";
+
+export const app = express();
+
+app.use(cors());
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Chulbul Bank Server is running!");
+});
+
+app.post("/api/register", (req, res) => {
+  const {
+    firstName,
+    lastName,
+  } = req.body;
+
+  // if (
+  //   !firstName ||
+  //   !lastName ||
+  //   !email ||
+  //   !mobile ||
+  //   !dateOfBirth ||
+  //   !address ||
+  //   !password ||
+  //   termsAccepted !== true
+  // ) {
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: "Missing required registration fields or terms not accepted.",
+  //   });
+  // }
+  
+
+  // console.log("Registration received:", {
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   mobile,
+  //   dateOfBirth,
+  //   nationality,
+  //   accountType,
+  //   initialDeposit,
+  //   address,
+  // });
+
+  const insert_query = `
+    INSERT INTO demotable (first_name, last_name) VALUES ($1, $2)
+  `;
+
+  connection.query(insert_query, [firstName, lastName],
+    (err, result) => {
+      if (err) {
+        console.error("Error inserting registration data:", err);
+        return res.status(500).json({
+          success: false,
+          message: "Error inserting registration data.",
+        });
+      }
+    })
+
+  return res.status(201).json({
+    success: true,
+    message: "Registration data received successfully.",
+  });
+});

@@ -17,22 +17,29 @@ enum UserRole {
 
 model User {
   id             String   @id @default(cuid())
-  firstName      String
-  lastName       String
+  firstName      String   @map("first_name")
+  lastName       String   @map("last_name")
   email          String   @unique
-  phone          String   @unique
-  username       String?  @unique
+  phone          String   @map("mobile")
   password       String
-  dateOfBirth    DateTime
+  dateOfBirth    DateTime @map("date_of_birth")
   nationality    String?
-  accountType    String?
-  initialDeposit Float?
+  accountType    String?  @map("account_type")
+  initialDeposit Float?   @map("initial_deposit")
   address        String
-  termsAccepted  Boolean
   role           UserRole @default(CUSTOMER)
-  createdAt      DateTime @default(now())
+  createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @updatedAt
 
   @@map("users")
+}
+
+model Credential {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("credentials")
 }
 

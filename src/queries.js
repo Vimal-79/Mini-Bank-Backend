@@ -1,5 +1,5 @@
 export const insert_query_users = `
-    INSERT INTO users (id, first_name, last_name, email, mobile, date_of_birth, nationality, account_type, initial_deposit, address, password, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    INSERT INTO users (id, first_name, last_name, email, mobile, date_of_birth, nationality, account_type, initial_deposite, address, password, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
   `;
 
 export const insert_query_credentials = `

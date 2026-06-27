@@ -13,11 +13,3 @@ export const select_user_by_email = `
 export const select_credentials_by_email = `
   SELECT * FROM credentials WHERE email = $1
 `;
-
-  // export const insert_query_credentials = `
-  //   INSERT INTO credentials (email, password, created_at) VALUES ($1, $2, $3)
-  // `;
-
-  // export const insert_query_credentials = `
-  //   INSERT INTO credentials (user_id, password, created_at) VALUES ($1, $2, $3)
-  // `;
